@@ -2,6 +2,6 @@
 using namespace std;
 int main(int argc, char const *argv[])
 {
-	cout<<"Gone fishing!!!";
+	cout<<"Gone fucking";
 	return 0;
 }
