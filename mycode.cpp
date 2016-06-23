@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
- using namespace std;
+using namespace std;
 int main(){
-    cout<<"hello world";
+    int n;
+    cin>>n;
+    while(n--)
+    	cout<<"hello world";
     return 0;
 }
