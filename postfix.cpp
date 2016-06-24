@@ -31,7 +31,7 @@ int getResult(int a,int b,char c)
 }
 
 //it will evaluate a postfix expression assuming it is valid
-void evaluatePostfix(string s)
+int evaluatePostfix(string s)
 {
 	stack<int> S;
 	for(int i=0;i<s.length();i++)
@@ -52,6 +52,6 @@ int main(int argc, char const *argv[])
 {
 	string s;
 	cin>>s;
-	cout<<"Result is "<<evaluatePostfix(s);
+	cout<<"Result is "<<evaluatePostfix(s)<<endl;
 	return 0;
 }
