@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart</title>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<style type="text/css">
+li{
+  padding-top: 10px;
+}
+  button{
+    float:right;
+  }
+</style>
+<body onload="Init()">
+<button onclick="deleteLocalStorage()">reset</button>
+<h2>Products</h2>
+<div id="products" style="width: 400px">
+    <ul id="product-list">
+      <li id="1" price="4000" name="Laptop">
+      Laptop Rs 4000 <button onclick="addItem(1)">ADD</button>
+      </li>
+      <li id ="2" price="200" name = "Headphones">
+      Headphones Rs 200 <button onclick="addItem(2)">ADD</button>
+      </li>
+      <li id ="3" price="2000" name = "Mobile Phone">
+      Mobile Phone Rs 2000 <button onclick="addItem(3)">ADD</button>
+      </li>
+      <li id ="4" price="1000" name = "Tablet">
+      Tablet Rs 1000 <button onclick="addItem(4)">ADD</button>
+      </li>
+  
+    </ul>
+</div>
+<h2>Cart</h2>
+<table id="cart" border="true" cellpadding="10">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Cost</th>
+    </tr>
+    <tr>
+        <td colspan="3">Total</td>
+        <td id="total_amount">Rs. 0</td>
+    </tr>
+</table>
+</body>
+</html>
