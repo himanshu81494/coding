@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-cpp">
+ char a[] = "string";
+ char *p = "string";
+
+ if(a[3] == p[3])
+  cout&lt&lta[2]&lt&lt"-"&lt&ltp[2];
+ else cout&lt&lt"WHAT";
+
+ This will print out:
+    ring-ring
+
+Why?
+It looks like something below in dataStructure representation
+in memory
+     +---+---+---+---+---+---+----+
+  a: | s | t | r | i | n | g | \0 |
+     +---+---+---+---+---+---+----+
+     +-----+     +---+---+---+---+---+---+---+ 
+  p: |  *======&gt | s | t | r | i | n | g |\0 |    
+     +-----+     +---+---+---+---+---+---+---+ 
+
+a is the name assigned to the block of memory allocated when declaration: char a[] = "string"
+but p has to take another route. p is pointer to a 
+memory location that is having first element of anoymous
+memory block assigned to it when executing line:
+char *p = "string";
+or
+char *p; p = "someString";
+
+
+</code>
+</pre>
+</body>
+</html>

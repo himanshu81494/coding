@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+  <code class="language-java">
+     import java.util.*;
+import java.math.*;
+public class Solution{
+  public static void main(String[] args){
+    Scanner scan = new Scanner(System.in);
+    BigInteger first = new BigInteger(scan.next());
+    BigInteger second = new BigInteger(scan.next());
+    int n = scan.nextInt();
+    BigInteger third = new BitInteger("0");
+    for(int i=2;i&ltn;i++){
+      third = first.add(second.multiply(second));
+      first = second;
+      second = third;
+    }
+    scan.close();
+    System.out.println(third);
+  }
+}    
+  </code>
+</pre>
+</body>
+</html>
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-cpp">
+Chennai->Banglore, Bombay->Delhi, Goa->Chennai, Delhi->Goa
+[assumptions-> input is not cyclic list, 
+one ticket from every city except final destination is available]
+output:
+Bombay->Delhi->Goa->Chennai->Banglore
+Approach:
+  Create a HashMap of given pair of tickets.
+  Find the staring point of itinerary
+    Create reverseMap of HashMap and for evey key
+    of dataset check if it is there in reverseMap
+    If key is not present then we found the starting point.
+  Start from above found starting point and traverse to print
+
+CODE:
+// java program to print itinerary in order
+import java.util.HashMap;
+import java.util.Map;
+public class printItinerary{
+  // driver function
+  public static void main(String[] args){
+    Map&ltString, String> dataSet = new HashMap&ltString, String>();
+    dataSet.put("Chennai","Banglore");
+    dataSet.put("Bombay", "Delhi");
+    dataSet.put("Goa", "Chennai");
+    dataSet.pus("Delhi", "Goa");
+    printResult(dataSet);
+  }
+  private static void printResult(Map&ltString, String> dataSet){
+    Map&ltString, String> reverseMap = new HashMap&ltString, String>();
+    // to fill reverseMap, iterate through the given map
+    for(Map.Entry&ltString, String> entry: dataSet.engtySet())
+      reverseMap.put(entry.getValue(), entry.getKey());
+
+    // find the starting point of itinerary
+    String start = null;
+    for(Map.Entry&ltString, String> entry: dataSet.entrySet()){
+      if(!reverseMap.containsKey(entry.getKey())){
+        start = entry.getKey()
+        break;
+      }
+    }
+    if(start == null){
+      System.out.println("Invalid Input");
+      return;
+    }
+    // once we have staring point we simply need to go next
+    String to = dataSet.get(start);
+    while(to != null){
+      System.out.println(start+"->"+to+", ");
+      start = to;
+      to =dataSet.get(to);
+    }
+  }
+}
+
+output: 
+Bombay->Delhi, Delhi->Goa, Goa->Chennai, Chennai->Banglore
+
+
+Count Number of Leaf nodes in a tree:
+typedef struct treeNode *treeptr;
+struct treeNode{
+  treeptr leftMostChild, rightSibling;
+};
+int doSomething (treeptr tree){
+  int value = 0;
+  if(tree){
+    if(tree->leftMostChild)
+      value = 1;
+    else
+      value = doSomething(tree->leftMostChild);
+
+    value = value + doSomething(tree->rightSibling);
+  }
+  return (value);
+}
+important to note that if leftMostChild is null for a node then there is no child of this node. otherwise incremented value by 1
+</code>
+</pre>
+</body>
+</html>

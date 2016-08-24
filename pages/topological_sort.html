@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<pre>
+Topological Sorting: 
+Only can be done for Direct Acyclic Graph(DAC) as it is a linear ordering of 
+vertices such that for every direct edge u->v u comes before v in ordering.
+Let there is a graph like
+2->3, 3->1, 4->1, 4->0, 5->0, 5->2
+(5) --->(0)&lt--- (4)
+|                |
+v                v
+(2) ---> (3)--->(1)
+topological sorting will be     : 5, 4, 2, 3, 1, 0
+another is(ya there can be many): 4, 5, 2, 3, 1, 0
+Note: first vertex in topological sorting is always a vertex with in-degree as 0
+(a vertex with no incoming edges).
+In DFS we print a vertex and then recursively call DFS for adjacent vertices. In
+topological soring, we need to print vertex before its adjacent vertices. For
+example in TOPO Sorting vertices 4 and 5 must come before 0 as indegree of 4 and 5
+are 0 each and that of 0 is 2. But there is no such thing is DFS (is 5,2,3,1,0,4)
+
+
+  #include &ltbits/stdc++.h>
+  using namespace std;  
+  class Graph{
+    int V; // no of vertices
+    list&ltint> *adj;
+    void topologicalSortUtil(int v, bool visited[], stack&ltint> &Stack);
+    public:
+    Graph(int V); //constructor
+    void addEdge(int v, int w); // function to add edge to graph
+    void topologicalSort(); // print topological sort
+  };
+  Graph::Graph(int V){
+    this->V = V;
+    adj = new list&ltint>[V];
+  }
+  void Graph::addEdge(int v, int w){
+    adj[v].push_back(w); // add w to v's list
+  }
+  void Graph::topologicalSortUtil(int v, bool visited[], stack&ltint> &Stack){
+    visited[v] = true;
+    list&ltint>::iterator i;
+    for(i=adj[v].begin,i!=adj[v].end();++i)
+      if(!visited[*i])
+        topologicalSortUtil(*i, visited, Stack);
+    Stack.push(v);
+  }
+  void Graph::topologicalSort(){
+    stack&ltint> Stack;
+    bool *visited = new bool[V];
+    for(int i=0;i&ltV;++i)
+      visited[i] = false
+    for(int i=0;i&ltV;++i)
+      if(visited[i] == false)
+        topologicalSortUtil(i, visited, Stack)
+    while(Stack.empty() == false){
+     cout&lt&ltStack.top()&lt&lt" ";
+     Stack.pop();
+     }
+  }
+  int main(){
+    Graph g(6);
+    g.addEdge(5, 2);
+    g.addEdge(5, 0);
+    g.addEdge(4, 0);
+    g.addEdge(4, 1);
+    g.addEdge(2, 3);
+    g.addEdge(3, 1);
+    cout&lt&lt"Following is Topological Sort of the given graph\n";
+    g.topologicalSort();
+    // will print 5 4 2 3 1 0
+
+  return 0;
+  }
+  /*
+    time complexity O(V+E)
+    Uses: mainly used for scheduling jobs from given dependencies among jobs.
+    Instruction scheduling, logic synthesis, data serialization
+  */
+  </pre>
+</body>
+</html>

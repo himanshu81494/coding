@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-wiki">
+
+DBMS: Database Management system is collection of programs that
+enables user to store, retrieve, update and delete info/data from database
+RDBMS: Relational Database Management System is based on relational model. Data
+from relational databases can be accessed or reassembled in many different
+ways without having to recongnize the database tables. Data from relational 
+database can be accessed using API, or SQL
+SQL: Structured Query Language is language designed specifically to communicate
+with databases. SQL is an ANSI standard.
+SQL statements are of three types:
+  DDL Data Definition Language
+    that holds the data. CREATE, ALTER, DROP, TRUNCATE TABLE
+  DML Data Manipulation Language
+    used to manipulate data itself. INSERT DELETE, UPDATE, SELECT
+  DCL Data Control Language
+    used to control visibility of data like granting database access
+    and set privileges to create tables. GRANT, REVOKE, ACCESS permissions
+
+  Advantages of SQL: 
+    Sql is not proprietary language: used by specific database vendors. Almost
+    every major DBMS supports SQL, so learning this one language will enable
+    programmers to interact with any database like ORACLE, SQL ,MYSQL etc
+    SQL is easy to learn: English like words
+    SQL is powerful: you can perform complex and sophisticated database operations
+    like nested queries etc
+Field:  A field is an area within a record reserved for a specific piece of data
+  exmaple Employee Name, Employee ID, etc
+Record: A collection of values/fields of specific entity i.e. an Employee,
+Salary etc
+Table: A table is collection of records of specific type. Example employee table,
+salary table, 
+
+Transaction:
+  Database transaction takes database from one consistent state to another. At the
+  end of the transaction the system must be in the prior state if the transaction
+  fails or the status of the system should reflect the successful completion if the
+  transaction goes through
+  Properties:
+    Atomicity: A transaction consists of many steps. When all the steps in a 
+    transaction get completed, it will get reflected in Db or if any step fails,
+    all transactions are rolled back
+    Consistency: Database will move form one consistent state to another,if the
+    transaction succeeds and remain in original state, if the transaciton fails
+    Isolation: Every transaction should operate as if it is the only transaction
+    in the system.
+    Durability: Once transaction has completed successfully, the updated rows/
+    records must be available for all other transactions on a permanent basis
+
+  Database Locks:
+    Shared Lock: Other transaction can only read the item but can't write into it
+    Exclusive Lock: other transactions can't read or write into data item
+
+  Database Normalization:
+    The process of removing the redundant data, by splitting up the splitting
+    up the table in a well defined fashion is called normalization.
+    1NF: First normal form if and only if all underlying domains contain
+    atomic values only. After 1NF we can still have redundant data.
+    2NF: Second normal form if and only if it is 1NF and evey non key attribute
+    is fully dependent on the primary key. After 2NF we can still have redundant
+    data.
+    3NF: Third normal form if and only if it is 2NF and evey non key attribute 
+    is non transitively dependent on the primary key
+</code>
+</pre>
+</body>
+</html>

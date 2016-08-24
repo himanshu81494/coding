@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-markup">
+  Given an unfair coin, where probability of HEADS coming up is P and TAILS is
+(1-P), implement a fair coin from the given unfair coin
+
+        flip1 flip2
+
+event1  H       H           P*P
+event2  T       T           (1-P)*(1-P)
+event3  H       T           P*(1-P)
+event4  T       H           (1-P)*P
+
+Observation: Event 3 and 4 occur with the same probablity!
+So if we just ignore 1st and 2nd event for now:
+If we generate a system where we keep generating events until we
+get 3rd or 4th event, and then return value which comes up in the
+first flip of that event. Keep flipping the unfair coin two at a time
+, until they come up with different values, then return value of first
+flip of the coin
+
+boolean flip1;
+boolean flip2;
+do{
+  flip1 = f();
+  flip2 = f();
+} while(flip1 == flip2);
+return flip1;
+
+P(getting H in system) = Probability of getting HEADS in first flip given
+that two flips resulted in different values.
+P(getting T in system) = Probability of getting TAILS in first flip given
+that two flips resulted in different values.
+applying Bayes' Theorem
+P(A/B) = P(A)P(B/A) / P(B)
+Now, Probability of getting HEADS in system = 
+Probability of getting HEADS in first flip given that two flips resulted in
+different values.
+P(A) = Prob of getting head on flipping a coin = p
+P(B) = Prob of getting H in first flip and T in second flip = 
+{or T in first and H in second}
+= Prob of Event 3+Prob of Event 4
+= p(1-p)+(1-p)*p = 2p(1-p)
+P(B/A) = Prob of getting T on second flip if given that first flip had H =(1-p)
+
+Prob of getting H in first flip given that two flip happened
+P(A/B) = p*(1-p) / 2p(1-p) = 1/2 = 0.5
+
+
+</code>
+</pre>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-cpp">
+This document
+explains the basics of REST and how to get started building an API
+
+What is an API?
+The term API stands Application Programming Interface. The term can
+be used to describe the features of a library, or how to interact with
+it. Your favourite library may have "API Documentation" which
+documents which functions are available, how you call them, which arguments
+are required and which are optional, etc
+These days when people refer to an API they are mostly likely referring to an
+HTTP API which can be a way of sharing application data over Internet.
+The true power of HTTP APIs, being able to "mashup" data from multiple
+applications into your own hybrid application, or create an application 
+which enhances the experience of using someone else's application
+like:
+
+https://example.com/view_posts
+https://example.com/delete_post?id=89
+https://example.com/update_author?id=78&new_name=BruceLee
+
+What is REST?
+REST stands for Representational State Transfer. This is a term invented by 
+Roy Fielding to describe a standard way of creating HTTP APIs. He noticed that 
+the four common actions(view, create, edit, delete) map directly to HTTP verbs
+that are already implemented : GET, POST, PUT, DELETE
+If your're new to HTTP, below given info is sufficient
+  GET
+  POST
+  PUT
+  DELETE
+  OPTIONS
+  HEAD
+  TRACE
+  CONNECT
+Most of time, you're clicking around in your browser, you're only using GET HTTP
+method which is used to get information/resource form internet. When you submit
+a form, you're using POST method to "post data" back to the website. For our
+uses, we will be using these only for now
+Example will be like:
+
+  GET http://exmaple.com/widgets
+
+  POST http://example.com/widgets
+  Data:
+    name = Foobar
+
+  GET https://example.com/widgets/234
+
+  PUT https://example.com/widgets/123
+  Data:
+    name = New_name
+    color = blue
+
+  DELETE https://exmaple.com/widgets/234
+
+Anatomy of a REST URL: When you are interacting with an API you are almost 
+always manipulating some sort of object. In our examples this is a 'widget'.
+In REST terminology this is called 'Resource'. The first part of URL is always
+the plural form of the resource:
+
+/widgets
+
+This is always used when referring to this collection of resources {"list all"
+or "add one" actions}. When you are working on specific resource. Your add ID to
+the URL
+
+/widgets/334
+
+GET /widgets/234/users
+
+POST /widgets/345/users
+  Data:
+    name = Andrew
+
+Nested resources are perfectly acceptable in URLs. However it's not a best
+practice to go more than two levels deep. It's not necessary because you can
+simple refer to those nested resources by ID rather than nesting them:
+
+/widgets/334/users/566/sports/593
+/users/456/sports/443
+/sports/4739
+
+HTTP Status Codes
+Another important part of REST is responding with correct status codes for
+the type of request that was made. HTTP status codes
+'.' can be any digit
+2.. = Success
+3.. = Redirect
+4.. = User error
+
+    Success codes:
+    200 OK (the default)
+    201 Created
+    202 Accepted
+    User error codes:
+    400 Bad Request (generic user error/bad data)
+    401 Unauthorized (this area required you to login)
+    404 Not Found (bad Url)
+    405 Method Not Allowed (wrong HTTP method)
+    409 Conflict (i.e. trying to create the same resource with a PUT request)
+
+API Response Fromats
+If you are requesting a webpage, method will be HTML pages
+if image then image
+Its server's responsibility to respond to request accordingly
+Due to lightweight, readable syntax, that can be easliy manipulated.
+JSON has become the first choice of developers.
+
+GET /widgets
+Accepts: application/json
+
+[
+  {
+    id: 234,
+    name: "simple widget"
+  },
+  {
+    id: 908,
+    name: "other widget"
+  }
+]
+
+
+</code>
+</pre>
+</body>
+</html>
