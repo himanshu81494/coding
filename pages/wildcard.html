@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./util/prism.css">
+  <script type="text/javascript" src="./util/prism.js"></script>
+</head>
+<body>
+<pre>
+<code class="language-cpp">
+
+#include &ltbits/stdc++.h&gt
+using namespace std;
+
+bool Matching(char *first, char *second){
+  if(*first == '\0' && *second == '\0')
+    return true;
+  if(*first == '*' && *(first+1) != '\0' &&
+     *second == '\0')
+    return false;
+  if(*first == '?' || *first == *second)
+    return Matching(first+1, second+1);
+  if(*first == '*')
+    return Matching(first+1, second) || Matching(first, second+1);
+  return false;
+}
+void fun(){
+  cout&lt&ltMatching("g*ks", "geeks");
+  cout&lt&ltMatching("ge?ks*", "geeksforgeeks");
+  cout&lt&ltMatching("g*k", "gee");
+  cout&lt&ltMatching("*pqrs", "pqrst");
+  cout&lt&ltMatching("abc*bcd", "abcdhghbcd");
+  cout&lt&ltMatching("abc*c?d", "abcd");
+  cout&lt&ltMatching("*c*d", "abcd");
+  cout&lt&ltMatching("*?c*d", "abcd");
+}
+
+int main(int argc, char const *argv[])
+{
+  fun();
+  return 0;
+}
+
+/*
+mid = (l+h)/2
+if key is present at middle return mid
+else if arr[l..mid] is sorted
+  a) if key lies in range l to mid, recur for arr[l..mid]
+  b) else recur for arr[mid+1..r]
+else (arr[mid+1..r] must be sorted)
+  a) if key lies in range mid+1 to r, recur for arr[mid+1..r]
+  b) else recur for arr[l..mid]
+*/
+rotatedBinarySearch(int arr[], int low, int high, int key){
+  // as base case
+  if(low &gt high) return -1;
+  int mid = (low+high)/2;
+  //  if arr is sorted from low to mid
+  if(arr[low] &lt= arr[mid]){
+    // if key lies in this or other half
+    if(key &gt= arr[low] && key &lt= arr[mid])
+      return rotatedBinarySearch(arr, low, mid-1, key);
+    return rotatedBinarySearch(arr, mid+1, high, key);
+  }
+  // if arr is not sorted from low to mid then 
+  // arr must be sorted from mid to high
+  if(key &gt= arr[mid] && key &lt= arr[high])
+    return rotatedBinarySearch(arr, mid+1, high, key);
+  return rotatedBinarySearch(arr, low, mid-1, key);
+}
+findMin(int arr[], int low, int high){
+  // case: array not rotated at all
+  if(high &lt low) return arr[0];
+  // case: only one element
+  if(high == low) return arr[low];
+  // find mid
+  int mid = low + (high-low)/2;
+  // case mid+1 is min element
+  if(mid &lt high && arr[mid+1] &lt arr[mid])
+    return arr[mid+1];
+  // case mid is min element
+  if(mid &gt low && arr[mid] &lt arr[mid-1])
+    return arr[mid];
+  // decide to go left or right
+  if(arr[high] &gt arr[mid])
+    return findMin(arr, low, mid-1);
+  return findMin(arr, mid+1, high);
+}
+void fun2(){
+  int arr[]  = {4, 5, 6, 7, 8, 9, 1, 2, 3};
+  int n = sizeof(arr)/sizeof(arr[0]);
+  int key = 6;
+  int i = rotatedBinarySearch(arr, 0, n-1, key);
+  if(i != -1 )cout&lt&lt"Index: "&lt&lti&lt&ltendl;
+  else cout&lt&lt"key not found\n";
+}
+
+&ltimg src="http://d1gjlxt8vb0knt.cloudfront.net//wp-content/uploads/SkipList1-1024x146.png"/&gt
+Can we search in sorted linked list in better than O(n) time?
+  The worst case search time for a sorted linked list is O(n) as we can only 
+  linearly traverse the list and cannot skip nodes while searching. For Balanced
+  Binary Search Tree we skip almost half of nodes after one comparasion with root.
+  For a sorted array, we have random access and we can apply Binary Search
+  on arrays
+  Idea is to make "Skip List". 
+  10_____________30_____________57_____________67
+  |               |              |              |
+  10 20 22 23 27 30 43 45 50 54 57 58 59 62 65 67
+  Worst case time complexity is number of nodes on "express lane". Exprss lane
+  has sqrt(n) nodes. Making it O(sqrt(n)) extra space and time complexity
+  Add more layers and we can reduce the time complexity upto O(log(n)). [BST]
+  </code>
+</pre>
+</body>
+</html>
