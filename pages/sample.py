@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="./util/prism.css">
-  <script type="text/javascript" src="./util/prism.js"></script>
-  <style>
-  div{
-    float : left;
-    padding: 2px;
-    margin: 3px;
-    border: 2px solid black;
-  }
-  .grid_4{
-    width: 150px;
-    height: 50px;
-  [aliceblue", "#F0F8FF"],
+data = '''
+[aliceblue", "#F0F8FF"],
   [antiquewhite", "#FAEBD7"],
   [aqua", "#00FFFF"],
   [aquamarine", "#7FFFD4"],
@@ -218,20 +203,13 @@
   yellow", "#FFFF00"],["
   
   yellowgreen", "#9ACD32"],["
-  </ul></li>
-</body>
-</html>
 
-  display: inline-block;
-  }
-  .container{
-  display: inline-block;
-  }
+'''
+nameList=[]
+codeList=[]
+for i in range(len(data)):
+	if(data[i] == '#'):
+		codeList.append(data[i]+data[i+1]+data[i+2]+data[i+3]+data[i+4]+data[i+5]+data[i+6])
 
-  </style>
-</head>
-<body>
-<li class="container">
-<ul class="row">
-  }
-  .row{
+
+print codeList
